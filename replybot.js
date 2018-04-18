@@ -2,6 +2,7 @@ console.log('The replier bot is starting');
 
 var Twit = require('twit');
 
+//Apply your own consumer keys and access tokens below!
 var T = new Twit({
  consumer_key:         'BgfOiU6oVbxcsKFyzJWdoOFbG',
  consumer_secret:      '29Q3iE3UxukNbsIgLQEqJI25Bi9FAS69mrK9xdVqYDsiH3MsmV',
