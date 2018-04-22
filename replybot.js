@@ -9,10 +9,38 @@ var T = new Twit({
  access_token:         '978710738129833985-iaRD8SKC6SrZZHiAAOYMG9TMh6vzTZi',
  access_token_secret:  'vHUPFD4fy1K1jHnsBTJ6hIdulZNWjZdLm1FXx4CkzkMxO',	});
  
-// Setting up a user stream 
-var stream = T.stream('user');
-
-// Anytime someone follows me
+ 
+  //Setting up a user stream
+ var stream = T.stream('user');
+ 
+ //Anytime someone follows me
+ stream.on('follow', followed);
+ 
+ 
+function followed(eventMsg) {
+	console.log("Follow Event");
+  var name = eventMsg.source.name;
+  var screenName = eventMsg.source.screen_name;
+	 tweetIt('.@' + screenName + ' thanks for the follow fam! #TippieAnalyticsBot');
+ }
+  
+ function tweetIt(txt) {
+	 
+	 var tweet = {
+	 status: txt
+ }
+ T.post('statuses/update', tweet, tweeted);
+ 
+   function tweeted(err, reply) {
+	   if (err) {
+		   console.log(err.message);
+	   } else {
+		   console.log('Tweeted: ' + reply.text);
+	   }
+   }
+ }
+ 
+// Anytime someone replies to me
 stream.on('tweet', tweetEvent);
 
  function tweetEvent(tweet) {
@@ -29,7 +57,7 @@ stream.on('tweet', tweetEvent);
 	 
 	 if (reply_to === 'orestes_franco'){
 		 txt = txt.replace(/@orestes_franco/g,'');
-		 var replyText = '@' + name + ' thanks for tweeting at me, I am very lonely...';
+		 var replyText = '@' + name + ' thanks for tweeting at me! #TippieAnalyticsBot';
 		 
    }
    

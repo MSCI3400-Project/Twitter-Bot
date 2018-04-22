@@ -17,10 +17,18 @@ var T = new Twit({
  //Anytime someone follows me
  stream.on('follow', followed);
  
- function followed(eventMsg){
-   var name = eventMsg.source.name;
-   var screenName = eventMsg.source.screen_name;
-	 tweetIt('@' + screenName + ' thanks for the follow fam!')
+ 
+function followed(eventMsg) {
+	console.log("Follow Event");
+  var name = eventMsg.source.name;
+  var screenName = eventMsg.source.screen_name;
+	 tweetIt('.@' + screenName + ' thanks for the follow fam! #TippieAnalyticsBot');
  }
- 
- 
+  
+ function tweetIt(txt) {
+	 
+	 var tweet = {
+	 status: txt
+ }
+ T.post('statuses/update', tweet, tweeted);
+ }
