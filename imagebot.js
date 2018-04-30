@@ -3,10 +3,10 @@ var Twit = require('twit');
 
 //Apply your own consumer keys and access tokens below!
 var T = new Twit({
- consumer_key:         'BgfOiU6oVbxcsKFyzJWdoOFbG',
- consumer_secret:      '29Q3iE3UxukNbsIgLQEqJI25Bi9FAS69mrK9xdVqYDsiH3MsmV',
- access_token:         '978710738129833985-iaRD8SKC6SrZZHiAAOYMG9TMh6vzTZi',
- access_token_secret:  'vHUPFD4fy1K1jHnsBTJ6hIdulZNWjZdLm1FXx4CkzkMxO',	});
+ consumer_key:         'W0QKnaBqALgAgEYDRS6YNlHti',
+ consumer_secret:      '7A99YWZn9nwbb2qAyXGLd090oMOAa46rIoCp5SCcyeRgDDEbRS',
+ access_token:         '991005968946352130-LlRjwN77Uuki4Eyq5F6rgHYNPi6da1T',
+ access_token_secret:  'elaAfFWCmwsv7C43NeFdfOhAhaH0EDtNh0KJruZtoCKma',	});
  
 var exec = require('child_process').exec;
 var fs = require('fs');
@@ -27,7 +27,7 @@ var fs = require('fs');
  
  
 tweetIt();
- //setInterval(tweetIt, 1000*60*60)
+ setInterval(tweetIt, 1000*60*60)
  function tweetIt(){
 	var cmd = 'processing-java --sketch="%cd%\\rainbow" --run'
 	exec(cmd, processing);
