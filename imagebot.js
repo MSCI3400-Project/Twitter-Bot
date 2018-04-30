@@ -26,30 +26,20 @@ var fs = require('fs');
  */
  
  
-tweetIt();
- setInterval(tweetIt, 1000*60*60)
- function tweetIt(){
-	var cmd = 'processing-java --sketch="%cd%\\rainbow" --run'
-	exec(cmd, processing);
+schedtweet();
 
-	function processing(){
-		var filename = 'rainbow/output.png';
-		var params = {
-			encoding: 'base64'
-		}
-		var b64 = fs.readFileSync(filename, params);
-		
-		T.post('media/upload', { media_data: b64 }, uploaded);
-		
-		function uploaded(err, data, response) {
-			var id = data.media_id_string;
-			var tweet = {
-			status: 'node.js tweet test',
-			media_ids: [id]
-			}
-			T.post('statuses/update', tweet, tweeted);
-			
+setInterval(schedtweet, 1000*80)
+
+function schedtweet(){
+	
+	var r = Math.floor(Math.random()*1000);
+	
+	var tweet = {
+		status: 'We are ' + r + '% done with this semester! #TippieBot'
 	}
+	
+	T.post('statuses/update', tweet, tweeted);
+
 	
 	function tweeted(err, data, response) {
 		if (err) {
@@ -59,5 +49,5 @@ tweetIt();
 		}
 }
  }
- }
+ 
  

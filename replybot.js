@@ -41,6 +41,31 @@ function followed(eventMsg) {
    }
  }
  
+ 
+ function schedtweet(){
+	
+	var r = Math.floor(Math.random()*1000);
+	
+	var tweet = {
+		status: 'I am ' + r + '% done with this semester... #TippieBot'
+	}
+	
+	T.post('statuses/update', tweet, tweeted);
+
+	
+	function tweeted(err, data, response) {
+		if (err) {
+			console.log("Oops! Something went wrong!");
+		} else { 
+			console.log("It worked!");
+		}
+}
+ }
+ schedtweet();
+
+setInterval(schedtweet, 1000*60*60)
+ 
+ 
 // Anytime someone replies to me
 stream.on('tweet', tweetEvent);
 
